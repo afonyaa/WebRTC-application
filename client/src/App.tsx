@@ -1,6 +1,11 @@
 import { FC } from 'react';
-import { Login } from '@pages/login';
+import { BrowserRouter } from 'react-router-dom';
+import RouteHandler from './pages';
 
 export const App: FC = () => {
-  return <Login />;
+  return (
+    <BrowserRouter>
+      <RouteHandler />
+    </BrowserRouter>
+  );
 };

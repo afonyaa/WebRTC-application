@@ -1,10 +1,15 @@
-import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import { DetailedHTMLProps, HTMLAttributes } from 'react';
 
-export type InputProps = {
-  name: string;
+export type FormInputVariantKey = 'default' | 'outlined';
+export interface InputProps
+  extends DetailedHTMLProps<
+    HTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
+  type?: string;
   label?: string;
-  errorLabel?: string;
-  variant?: InputVariant;
-} & DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
-
-export type InputVariant = 'default' | 'outlined' | 'oneLine';
+  name?: string;
+  errorMessage?: string;
+  variant?: FormInputVariantKey;
+  value?: string;
+}

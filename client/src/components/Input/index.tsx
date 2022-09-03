@@ -1,28 +1,44 @@
 import { ForwardedRef, forwardRef } from 'react';
-import { InputProps } from '@components/Input/interfaces';
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
+import { InputProps, FormInputVariantKey } from './interfaces';
+import { defaultVariant, labelClass, outlinedVariant } from './styles';
+import classNames from 'classnames';
+
+export const Input = forwardRef(
   (
-    { name, label, errorLabel, ...props },
+    {
+      variant,
+      name,
+      className: outerClassName,
+      label,
+      errorMessage,
+      ...rest
+    }: InputProps,
     ref: ForwardedRef<HTMLInputElement>
-  ) => {
-    /*  const variant: { [key in InputVariant]: string } = {
-            default: '',
-            outlined: '',
-            oneLine: '',
-        };*/
-
-    const isInputError = !!errorLabel && `text-red-700`;
+  ): JSX.Element => {
+    const isError = !!errorMessage;
+    const classVariant: { [key in FormInputVariantKey]: string } = {
+      default: defaultVariant(isError),
+      outlined: outlinedVariant(isError),
+    };
 
     return (
-      <div className='flex pb-[2px] flex-col bg-gradient-to-r from-[#7928ca] to-[#ff0080]'>
-        {(label || errorLabel) && (
-          <label htmlFor={name} className={`text-xs ${isInputError} bg-white`}>
-            {errorLabel || errorLabel}
-          </label>
-        )}
-        <input className='p-2 outline-0' {...props} name={name} ref={ref} />
+      <div>
+        <label className={labelClass(isError)}>
+          {label} {isError && <span>{errorMessage}</span>}
+        </label>
+        <input
+          name={name}
+          ref={ref}
+          className={classNames(
+            variant && classVariant[variant],
+            outerClassName
+          )}
+          {...rest}
+        />
       </div>
     );
   }
 );
+
+Input.displayName = 'Input';
