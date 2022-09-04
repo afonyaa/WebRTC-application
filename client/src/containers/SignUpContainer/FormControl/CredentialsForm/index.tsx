@@ -1,29 +1,29 @@
-import { FC, useContext, useEffect } from 'react';
+import { FC, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProps, SignUpForm } from '@containers/SignUpContainer/interfaces';
-import { mainInfoSchema } from '@containers/SignUpContainer/FormControl/utils/yupSchemas';
+import { credentialsSchema } from '@containers/SignUpContainer/FormControl/utils/yupSchemas';
 import { FormField } from '@components/FormField';
 import { Button } from '@components/Button';
 import { SignUpContext } from '@containers/SignUpContainer/context';
 
-export const MainInfoForm: FC<FormProps> = ({ onFulfilled }) => {
+export const CredentialsForm: FC<FormProps> = ({ onFulfilled }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpForm>({
-    resolver: yupResolver(mainInfoSchema),
+    resolver: yupResolver(credentialsSchema),
     mode: 'onSubmit',
   });
 
   const {
-    mainFormFields: { firstName, lastName, age, country },
-    updateMainFormFields,
+    credentialsFormFields: { nickname, passwordConfirm, password, email },
+    updateCredentialFields,
   } = useContext(SignUpContext);
 
   const onSubmit = (data: SignUpForm) => {
-    updateMainFormFields(data);
+    updateCredentialFields(data);
     onFulfilled();
   };
 
@@ -32,32 +32,34 @@ export const MainInfoForm: FC<FormProps> = ({ onFulfilled }) => {
       {/*.fieldsWrapper*/}
       <div className={'flex flex-col gap-4 flex-auto'}>
         <FormField
-          name={'firstName'}
-          label={'First Name'}
+          name={'nickname'}
+          label={'Nickname'}
+          defaultValue={nickname}
           register={register}
-          defaultValue={firstName}
-          error={errors?.firstName}
+          error={errors?.nickname}
         />
         <FormField
-          name={'lastName'}
-          label={'Last Name'}
+          name={'email'}
+          label={'Email'}
+          defaultValue={email}
           register={register}
-          defaultValue={lastName}
-          error={errors?.lastName}
+          error={errors?.email}
         />
         <FormField
-          name={'age'}
-          label={'Age'}
+          type={'password'}
+          name={'password'}
+          defaultValue={password}
+          label={'Password'}
           register={register}
-          defaultValue={age}
-          error={errors?.age}
+          error={errors?.password}
         />
         <FormField
-          name={'country'}
-          label={'Where are you from?'}
+          type={'password'}
+          name={'passwordConfirm'}
+          defaultValue={passwordConfirm}
+          label={'Confirm your password'}
           register={register}
-          defaultValue={country}
-          error={errors?.country}
+          error={errors?.passwordConfirm}
         />
       </div>
       {/*.formActions*/}

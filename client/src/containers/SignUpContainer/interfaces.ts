@@ -1,19 +1,18 @@
 export interface SignUpForm {
-  firstName: string;
-  lastName: string;
-  age: string;
-  email: string;
-  level: string;
-  country: string;
-  password: string;
-  passwordConfirm: string;
+  // Main info
+  firstName: string | null;
+  lastName: string | null;
+  age: string | null;
+  country: string | null;
+  // Credentials info
+  nickname: string | null;
+  email: string | null;
+  password: string | null;
+  passwordConfirm: string | null;
 }
 
 export interface FormProps {
   onFulfilled: () => void;
 }
 
-export interface FormControlProps {
-  currentStep: number;
-  onCurrentStepChange: () => void;
-}
+export interface FormControlProps {}

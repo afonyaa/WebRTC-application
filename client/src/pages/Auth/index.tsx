@@ -2,6 +2,7 @@ import { AuthContainer } from '@containers/AuthContainer';
 import { PageRoute } from '@pages/interfaces';
 import { SignInContainer } from '@containers/SignInContainer';
 import { SignUpContainer } from '@containers/SignUpContainer';
+import { SignUpProvider } from '@containers/SignUpContainer/context';
 
 /** Страница регистрации и логина */
 const rootRoute: PageRoute = {
@@ -18,7 +19,11 @@ const rootRoute: PageRoute = {
     },
     {
       path: 'signUp',
-      element: <SignUpContainer />,
+      element: (
+        <SignUpProvider>
+          <SignUpContainer />
+        </SignUpProvider>
+      ),
       baseLinkName: 'Sign up',
       private: false,
     },

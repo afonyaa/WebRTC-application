@@ -1,13 +1,15 @@
 import { FC } from 'react';
 import { FieldError, Path, UseFormRegister } from 'react-hook-form';
-import { SignUpForm } from '@containers/SignUpContainer';
 import { Input } from '@components/Input';
+import { SignUpForm } from '@containers/SignUpContainer/interfaces';
 
 export interface FormFieldProps<FormSchema> {
   name: Path<FormSchema>;
   register: UseFormRegister<FormSchema>;
   label?: string;
   error?: FieldError;
+  type?: string;
+  defaultValue?: any;
 }
 
 export const FormField: FC<FormFieldProps<SignUpForm>> = ({
@@ -15,6 +17,8 @@ export const FormField: FC<FormFieldProps<SignUpForm>> = ({
   label,
   register,
   error,
+  type,
+  defaultValue,
 }) => {
   return (
     <Input
@@ -22,6 +26,8 @@ export const FormField: FC<FormFieldProps<SignUpForm>> = ({
       variant={'outlined'}
       label={label}
       errorMessage={error?.message}
+      type={type}
+      defaultValue={defaultValue}
     />
   );
 };
