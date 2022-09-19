@@ -1,9 +1,10 @@
 import AuthRoute from '@pages/Auth';
 import DashboardRoute from '@pages/Dashboard';
+import VideoCallRoute from '@pages/VideoCall';
 import { FC } from 'react';
 import { useRoutes } from 'react-router-dom';
 
-const rootRoutes = [AuthRoute, DashboardRoute];
+const rootRoutes = [AuthRoute, DashboardRoute, VideoCallRoute];
 
 const RouteHandler: FC = () => {
   return useRoutes(rootRoutes);
