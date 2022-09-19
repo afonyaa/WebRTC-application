@@ -1,0 +1,7 @@
+/server/yarn.lock
+/server/dist
+/client/node_modules
+/client/.idea
+/client/dist
+/client/yarn.lock
+/server/node_modules/
