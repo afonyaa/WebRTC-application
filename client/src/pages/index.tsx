@@ -1,6 +1,6 @@
 import AuthRoute from '@pages/Auth';
 import DashboardRoute from '@pages/Dashboard';
-import VideoCallRoute from '@pages/VideoCall';
+import VideoCallRoute from '@pages/P2Pcall';
 import { FC } from 'react';
 import { useRoutes } from 'react-router-dom';
 
