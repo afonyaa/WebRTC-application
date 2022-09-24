@@ -1,11 +1,11 @@
 import { PageRoute } from '@pages/interfaces';
-import { VideoCallContainer } from '@containers/VideoCallContainer';
+import { RoomContainer } from '@containers/RoomContainer';
 
 /** Страница видеозвонка пользователя */
 const rootRoute: PageRoute = {
-  path: 'videoCall',
-  element: <VideoCallContainer />,
-  baseLinkName: 'videoCall',
+  path: 'room',
+  element: <RoomContainer />,
+  baseLinkName: 'room',
   private: false,
 };
 
